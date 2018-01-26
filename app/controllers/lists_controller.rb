@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, :only=>[:show, :edit, :update, :destroy]
+  before_action :set_list, :only=>[:show, :edit, :update, :destroy, :check]
   def index
     @lists = List.all
   end
@@ -29,6 +29,14 @@ class ListsController < ApplicationController
     @list.destroy
 
     redirect_to lists_path
+  end
+  def check
+    if @list.finished == false
+      @list.finished = true
+    else
+      @list.finished = false
+    end
+    redirect_to(root_path)
   end
 
   private
