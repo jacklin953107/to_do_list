@@ -32,11 +32,11 @@ class ListsController < ApplicationController
   end
   def check
     if @list.finished == false
-      @list.finished = true
+      @list.update_attribute(:finished, true)
     else
-      @list.finished = false
+      @list.update_attribute(:finished, false)
     end
-    redirect_to(root_path)
+    redirect_to lists_path
   end
 
   private
